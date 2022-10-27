@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="WPFRepetition.Views.RightView"
+    x:Class="WPFRepetition.Views.CenterView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,9 +9,8 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <!--  Här binder vi en command på knappen till RelayCommand, så att våran Execute på Counter minus minus körs.  -->
-            <Button Command="{Binding CountDownCommand}" Content="Count Down" />
+        <StackPanel>
+            <Button Command="{Binding CountReset}" Content="Show Center" />
             <TextBlock Width="50" Text="{Binding Counter, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">

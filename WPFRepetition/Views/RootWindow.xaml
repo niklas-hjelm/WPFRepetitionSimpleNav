@@ -19,16 +19,16 @@
             <DataTemplate DataType="{x:Type viewmodels:RightViewModel}">
                 <views:RightView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:CenterViewModel}">
+                <views:CenterView />
+            </DataTemplate>
         </Grid.Resources>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <!--<StackPanel Orientation="Horizontal">
             <Button Command="{Binding NavigateLeftCommand}" Content="Show Left" />
             <Button Command="{Binding NavigateRightCommand}" Content="Show Right" />
-        </StackPanel>
+            <Button Command="{Binding NavigateCenterCommand}" Content="Show Center" />
+        </StackPanel>-->
 
-        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

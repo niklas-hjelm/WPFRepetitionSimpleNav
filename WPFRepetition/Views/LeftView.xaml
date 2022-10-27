@@ -13,8 +13,12 @@
             <Button Command="{Binding CountUpCommand}" Content="Count Up" />
             <TextBlock Width="50" Text="{Binding Counter, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel DockPanel.Dock="Left" />
-        <StackPanel DockPanel.Dock="Right" />
+        <StackPanel DockPanel.Dock="Left">
+            <Button Command="{Binding NavigateLeftCommand}" Content="Show Left" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Right">
+            <Button Command="{Binding NavigateRightCommand}" Content="Show Right" />
+        </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" />
     </DockPanel>
 </UserControl>
