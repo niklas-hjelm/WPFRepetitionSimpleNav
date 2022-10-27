@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WPFRepetition.Managers;
 using WPFRepetition.Models;
 
 namespace WPFRepetition.ViewModels
@@ -9,12 +10,15 @@ namespace WPFRepetition.ViewModels
         #region Fields
 
         private readonly DataModel _dataModel;
+        private NavigationManager _navigationManager;
 
         #endregion
 
         #region Commands
 
         public IRelayCommand CountDownCommand { get; }
+        public IRelayCommand NavigateLeftCommand { get; }
+        public IRelayCommand NavigateRightCommand { get; }
 
         #endregion
 
@@ -31,10 +35,14 @@ namespace WPFRepetition.ViewModels
 
         #endregion
 
-        public RightViewModel(DataModel dataModel)
+        public RightViewModel(DataModel dataModel, NavigationManager navigationManager)
         {
             _dataModel = dataModel;
+            _navigationManager = navigationManager;
+
             CountDownCommand = new RelayCommand(() => Counter--);
+            NavigateLeftCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new CenterViewModel(_dataModel, _navigationManager));
+            NavigateRightCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new LeftViewModel(_dataModel, _navigationManager));
         }
     }
 }

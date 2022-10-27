@@ -21,7 +21,7 @@ namespace WPFRepetition
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationManager.CurrentViewModel = new LeftViewModel(_dataManager.DataModel);
+            _navigationManager.CurrentViewModel = new LeftViewModel(_dataManager.DataModel, _navigationManager);
             var rootWindow = new RootWindow { DataContext = new RootViewModel(_navigationManager, _dataManager) };
             rootWindow.Show();
             base.OnStartup(e);

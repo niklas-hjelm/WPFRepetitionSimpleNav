@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="WPFRepetition.Views.RightView"
+    x:Class="WPFRepetition.Views.CenterView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,8 +11,8 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Button
-                Command="{Binding CountDownCommand}"
-                Content="Count Down"
+                Command="{Binding ResetCounterCommand}"
+                Content="Reset Counter"
                 FontSize="60" />
             <TextBlock FontSize="100" Text="{Binding Counter, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
