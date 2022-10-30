@@ -1,7 +1,6 @@
-﻿namespace WPFRepetition.Models
+﻿namespace WPFRepetition.Models;
+
+public class DataModel
 {
-    public class DataModel
-    {
-        public int Counter { get; set; }
-    }
+    public int Counter { get; set; }
 }

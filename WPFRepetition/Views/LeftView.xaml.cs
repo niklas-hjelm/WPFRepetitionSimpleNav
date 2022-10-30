@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace WPFRepetition.Views
+namespace WPFRepetition.Views;
+
+/// <summary>
+/// Interaction logic for LeftView.xaml
+/// </summary>
+public partial class LeftView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for LeftView.xaml
-    /// </summary>
-    public partial class LeftView : UserControl
+    public LeftView()
     {
-        public LeftView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

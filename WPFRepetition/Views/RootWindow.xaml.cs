@@ -1,15 +1,14 @@
 ﻿using System.Windows;
 
-namespace WPFRepetition.Views
+namespace WPFRepetition.Views;
+
+/// <summary>
+/// Interaction logic for RootWindow.xaml
+/// </summary>
+public partial class RootWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for RootWindow.xaml
-    /// </summary>
-    public partial class RootWindow : Window
+    public RootWindow()
     {
-        public RootWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

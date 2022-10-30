@@ -1,31 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace WPFRepetition.Managers
+namespace WPFRepetition.Managers;
+
+class NavigationManager : INavigationManager
 {
-    class NavigationManager
+    private ObservableObject _currentViewModel;
+
+    public ObservableObject CurrentViewModel
     {
-        private ObservableObject _currentViewModel;
-
-        public ObservableObject CurrentViewModel
+        get { return _currentViewModel; }
+        set
         {
-            get { return _currentViewModel; }
-            set
-            {
-                _currentViewModel = value;
-                OnCurrentViewModelChanged();
-            }
+            _currentViewModel = value;
+            OnCurrentViewModelChanged();
         }
-
-        private void OnCurrentViewModelChanged()
-        {
-            CurrentViewModelChanged?.Invoke();
-        }
-
-        public event Action CurrentViewModelChanged;
     }
+
+    public void OnCurrentViewModelChanged()
+    {
+        CurrentViewModelChanged?.Invoke();
+    }
+
+    public event Action CurrentViewModelChanged;
 }

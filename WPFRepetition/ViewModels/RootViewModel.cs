@@ -1,33 +1,31 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using WPFRepetition.Factories;
 using WPFRepetition.Managers;
 
-namespace WPFRepetition.ViewModels
+namespace WPFRepetition.ViewModels;
+
+class RootViewModel : ObservableObject
 {
-    class RootViewModel : ObservableObject
+    private readonly INavigationManager _navigationManager;
+
+    #region Commands
+        
+    #endregion
+
+    public ObservableObject CurrentViewModel => _navigationManager.CurrentViewModel;
+        
+    public RootViewModel(INavigationManager navigationManager, IViewModelFactory<LeftViewModel> leftFactory)
     {
-        private readonly NavigationManager _navigationManager;
-        private readonly DataManager _dataManager;
+        _navigationManager = navigationManager;
+        _navigationManager.CurrentViewModel = leftFactory.Create();
 
-        #region Commands
-        
-        #endregion
-
-        public ObservableObject CurrentViewModel => _navigationManager.CurrentViewModel;
-        
-        public RootViewModel(NavigationManager navigationManager, DataManager dataManager)
-        {
-            _navigationManager = navigationManager;
-            _dataManager = dataManager;
-
-            _navigationManager.CurrentViewModelChanged += CurrentViewModelChanged;
-        }
-
-
-        private void CurrentViewModelChanged()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
-        
+        _navigationManager.CurrentViewModelChanged += CurrentViewModelChanged;
     }
+
+
+    private void CurrentViewModelChanged()
+    {
+        OnPropertyChanged(nameof(CurrentViewModel));
+    }
+        
 }

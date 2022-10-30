@@ -1,12 +1,11 @@
 ﻿using WPFRepetition.Models;
 
-namespace WPFRepetition.Managers
-{
-    class DataManager
-    {
-        private DataModel _dataModel = new DataModel();
+namespace WPFRepetition.Managers;
 
-        public DataModel DataModel => _dataModel;
+class DataManager : IDataManager
+{
+    private DataModel _dataModel = new DataModel();
+
+    public DataModel DataModel => _dataModel;
         
-    }
 }

@@ -1,48 +1,51 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using WPFRepetition.Factories;
 using WPFRepetition.Managers;
 using WPFRepetition.Models;
 
-namespace WPFRepetition.ViewModels
+namespace WPFRepetition.ViewModels;
+
+class RightViewModel : ObservableObject
 {
-    class RightViewModel : ObservableObject
+    #region Fields
+
+    private readonly DataModel _dataModel;
+    private readonly INavigationManager _navigationManager;
+
+    #endregion
+
+    #region Commands
+
+    public IRelayCommand CountDownCommand { get; }
+    public IRelayCommand NavigateLeftCommand { get; }
+    public IRelayCommand NavigateRightCommand { get; }
+
+    #endregion
+
+    #region Props
+
+    public int Counter
     {
-        #region Fields
-
-        private readonly DataModel _dataModel;
-        private NavigationManager _navigationManager;
-
-        #endregion
-
-        #region Commands
-
-        public IRelayCommand CountDownCommand { get; }
-        public IRelayCommand NavigateLeftCommand { get; }
-        public IRelayCommand NavigateRightCommand { get; }
-
-        #endregion
-
-        #region Props
-
-        public int Counter
+        get => _dataModel.Counter;
+        set
         {
-            get => _dataModel.Counter;
-            set
-            {
-                SetProperty(_dataModel.Counter, value, _dataModel, (model, value) => model.Counter = value);
-            }
+            SetProperty(_dataModel.Counter, value, _dataModel, (model, value) => model.Counter = value);
         }
+    }
 
-        #endregion
+    #endregion
 
-        public RightViewModel(DataModel dataModel, NavigationManager navigationManager)
-        {
-            _dataModel = dataModel;
-            _navigationManager = navigationManager;
+    public RightViewModel(IDataManager dataManager,
+        INavigationManager navigationManager,
+        IViewModelFactory<CenterViewModel> centerFactory,
+        IViewModelFactory<LeftViewModel> leftFactory)
+    {
+        _dataModel = dataManager.DataModel;
+        _navigationManager = navigationManager;
 
-            CountDownCommand = new RelayCommand(() => Counter--);
-            NavigateLeftCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new CenterViewModel(_dataModel, _navigationManager));
-            NavigateRightCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new LeftViewModel(_dataModel, _navigationManager));
-        }
+        CountDownCommand = new RelayCommand(() => Counter--);
+        NavigateLeftCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = centerFactory.Create());
+        NavigateRightCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = leftFactory.Create());
     }
 }
